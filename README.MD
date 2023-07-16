@@ -1,8 +1,8 @@
 # Email Announcements Automation tool
 
-This small project appeared because of frustration in EDM (Electronic Direct Mail) marketing tools. They are great, but sometimes people ignore emails as they see it as marketing rubbish. When EDM sent, all users receive an individual email without understanding whom else it was sent in their company and organisation. This tool allows you to send emails in batches to groups of people to make emails looking naturals and sent from your mailbox.
+This project was created to address frustrations with EDM (Electronic Direct Mail) marketing tools. While these tools are great, sometimes people tend to ignore emails as they perceive them as marketing rubbish. When an EDM is sent, all users receive individual emails without realizing who else received it within their company or organization. This tool allows you to send batch emails to groups of people, making the emails appear more natural and as if they were sent from your own mailbox.
 
-For instance you have 3 teams working who you would like to announce about new feature. Instead of emailing them individually the tool can send 3 email to the group of people visible in "TO" and "CC". This looks more people2people communication and induct them to reply as email sent from YOU. Of course it won't help you to get leads or good responses if you do not have certain level of trust with you customers/leads. This is just an automation tools what extends your smart mind.
+For example, let's say you have three teams that you would like to announce a new feature to. Instead of emailing them individually, this tool can send three emails to groups of people visible in the "TO" and "CC" fields. This creates a more person-to-person communication and encourages recipients to reply, as the email appears to be from you. However, it's important to note that this tool won't help you generate leads or receive good responses if you don't already have a certain level of trust with your customers/leads. It's simply an automation tool that extends your smart mind.
 
 ## How it works
 
@@ -10,15 +10,15 @@ For instance you have 3 teams working who you would like to announce about new f
 <img height="400" src="./doc/images/mail-sender.png">
 </p>
 
-The scrip uses following Google APIs:
+The script utilizes the following Google APIs:
 
 - Gmail
 - Google Drive
 - Google Sheets
 
-Therefore you need to download Google oAuth token from google console and save it in `google-creds` folder.
+Therefore, you need to download a Google OAuth token from the Google Console and save it in the google-creds folder.
 
-**First** thing you need to do is create Google Sheet with emails of people what you would like to interact. For instance it may looks like this:
+**First**, create a Google Sheet with the emails of the people you would like to interact with. For instance, it may look like this:
 
 <p align="center">
 <img height="400" src="./doc/images/google-sheet-edm.png">
@@ -28,8 +28,9 @@ Therefore you need to download Google oAuth token from google console and save i
 | :----: | :------------------------------------------------- |
 |   A    | Name of the team or name (used for Jinja template) |
 |   B    | Last name (if needed)                              |
-|   C    | comma separated list of To                         |
-|   D    | comma separated list of CC                         |
+|   C    | Comma-separated list of recipients (TO)            |
+|   D    | Comma-separated list of recipients (CC)            |
+|  |
 
 **Second** Prepare Jinja template what for EDM. Default is HTML and save it announcements folder.
 
@@ -48,17 +49,17 @@ CREDS_PATH = "google-creds/my-creds.json"
 TEMPLATE = "announcements/example.html"
 ```
 
-`SPREADSHEET_ID` - Google doc id, can be extracted from document url. For instance the Sheet URL is https://docs.google.com/spreadsheets/d/1I8SqlheQ6CEISi6hkbHl0YIFcWCRODg7ng0JSHL4Nio/edit#gid=0, and `1I8SqlheQ6CEISi6hkbHl0YIFcWCRODg7ng0JSHL4Nio` is document ID.
+`SPREADSHEET_ID` - Google Doc ID, which can be extracted from the document URL. For example, if the Sheet URL is https://docs.google.com/spreadsheets/d/1I8SqlheQ6CEISi6hkbHl0YIFcWCRODg7ng0JSHL4Nio/edit#gid=0, and `1I8SqlheQ6CEISi6hkbHl0YIFcWCRODg7ng0JSHL4Nio` is document ID.
 
 `SPREADSHEET_TAB` - Spreadsheet tab name
 
-`SUBJ` - Subject of EDM (no Jinja)
+`SUBJ` - Subject of EDM (without Jinja)
 
 `CREDS_PATH` - path with google oAuth credentials
 
 `TEMPLATE` - path to email body (Jinja)
 
-You may have many configuration files, as presumably you would like to keep announcement relevant for certain people. For instance I do not want to send announcements about developer feature to infrastructure guys or DevOps.
+You can have multiple configuration files if you want to keep the announcements relevant to certain groups of people. For example, you may not want to send announcements about developer features to infrastructure guys or DevOps.
 
 ## Installation
 
@@ -75,7 +76,7 @@ or
 
 ## Usage
 
-Simply run the script with `-c` parameter point to the configuration file.
+Simply run the script with the -c parameter, pointing to the configuration file.
 
 ```
 ❯ python main.py -h
@@ -89,7 +90,7 @@ options:
                         path to config file
 ```
 
-Run with config `test.py`
+Run with the `test.py` config:
 
 ```
 ❯ python main.py -c configs/test.py
@@ -102,7 +103,7 @@ After run, you will be redirected to Google SignIn page to select account you wo
 <img height="400" src="./doc/images/auth.png">
 </p>
 
-After sucessfull authorisation script prints user groups
+After successful authorization, the script will print the user groups:
 
 ```
 [{'cc': 'sales-head@acme.com',
@@ -116,4 +117,4 @@ After sucessfull authorisation script prints user groups
 Do you want to send email to 2 groups?
 ```
 
-If you type "Y" or "Yes" script will send emails
+If you type "Y" or "Yes," the script will send the emails.
