@@ -54,6 +54,6 @@ if __name__ == "__main__":
     email_service = get_service("gmail", oAuth)
     email_template = prep_template(config.template)
     emails = get_edm_list(sheet_service, config.spreadsheet_id, config.spreadsheet_tab)
-    is_send(emails)
+    is_send(emails, email_template)
     for email in emails:
         send_email(email_service, email_template, email)
